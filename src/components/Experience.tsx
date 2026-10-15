@@ -1,30 +1,70 @@
+import { achievement, education } from '../data/education'
 import { experience } from '../data/experience'
-import { Section } from './Section'
+import { Reveal } from './Reveal'
 
 export function Experience() {
   return (
-    <Section id="experience" title="Experience" cmd="git log --career">
-      <ol className="space-y-8 border-l border-line pl-6">
-        {experience.map((e) => (
-          <li key={e.company + e.period} className="relative">
-            <span className="absolute top-2 -left-[31px] h-3 w-3 rounded-full bg-accent shadow-[0_0_12px_var(--color-accent)]" />
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 className="text-xl font-semibold">
-                {e.title} <span className="text-accent">@ {e.company}</span>
-              </h3>
-              <p className="font-mono text-xs text-muted">
-                {e.period}
-                {e.location ? ` | ${e.location}` : ''}
-              </p>
+    <>
+      <section className="experience" id="experience">
+        <Reveal origin="top">
+          <h2 className="heading experience">
+            <span>Experience</span>
+          </h2>
+        </Reveal>
+        <div className="timeline">
+          {experience.map((e) => (
+            <Reveal origin="bottom" key={e.company + e.period}>
+              <div className="timeline-item">
+                <div className="timeline-content">
+                  <h2>{e.title}</h2>
+                  <h3>
+                    {e.company}
+                    {e.location ? ` · ${e.location}` : ''}
+                  </h3>
+                  <ul>
+                    {e.bullets.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                  <span className="timeline-date">{e.period}</span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="education" id="education">
+        <Reveal origin="top">
+          <h2 className="heading education">Education</h2>
+        </Reveal>
+        <div className="timeline2">
+          {education.map((e) => (
+            <Reveal origin="bottom" key={e.degree}>
+              <div className="timeline-item2">
+                <div className="timeline-content2">
+                  <h2>{e.degree}</h2>
+                  <h3>{e.school}</h3>
+                  <p>
+                    {e.detail}
+                    {e.detail && <br />}
+                    <strong>{e.highlight}</strong>
+                  </p>
+                  <span className="timeline-date2">{e.period}</span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+          <Reveal origin="bottom">
+            <div className="timeline-item2">
+              <div className="timeline-content2">
+                <h2>Achievement</h2>
+                <p>{achievement}</p>
+              </div>
             </div>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-muted marker:text-accent">
-              {e.bullets.map((b) => (
-                <li key={b}>{b}</li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ol>
-    </Section>
+          </Reveal>
+        </div>
+      </section>
+    </>
   )
 }

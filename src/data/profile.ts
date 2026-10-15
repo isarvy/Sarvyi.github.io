@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Sarvagya Singh',
   handle: 'sarvy',
-  roles: ['DevOps Engineer', 'Cloud Engineer', 'Platform Engineer'],
+  roles: ['DevOps Engineer.', 'Cloud Engineer.', 'Platform Engineer.'],
   location: 'Mumbai, India',
   email: 'sarvagya1812@gmail.com',
   summary:
